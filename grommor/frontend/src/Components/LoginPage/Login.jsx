@@ -9,81 +9,88 @@ import PaymentSuccess from '../../Razorpay/PaymentSuccess';
 
 const Home = ({ phoneNumber, referralCode, setPhoneNumber, sendData, setReferralCode, otp, handleVerifyOtp, setOtp }) => {
   return (
-    <div className="bg-blue-100 h-full w-full">
-      <main className="m-auto w-full max-w-md py-24 px-12 text-center text-2xl">
-        <header className="text-center text-3xl font-bold py-4">
-          <h1>Registration page</h1>
-        </header>
-        <form className="rounded-lg px-8 py-10 w-96 bg-white shadow-lg" id="form1">
-          <img src="../../../assets/image.jpg" alt="" className="h-32 w-auto mx-auto mb-6" />
-          <input
-            type="tel"
-            id="mobile"
-            name="mobile"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            placeholder="Enter phone number"
-            className="border border-black rounded-lg my-3 px-4 py-2 text-xl mb-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-            minLength={10}
-            maxLength={10}
-            required
-          />
-          <input
-            type="text"
-            id="referral"
-            name="referral"
-            placeholder="Referral (optional)"
-            className="border border-black rounded-lg px-4 py-2 text-xl mb-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-            minLength={10}
-            maxLength={15}
-            value={referralCode}
-            onChange={(e) => setReferralCode(e.target.value)}
-          />
 
-          <div>
-            <input type="checkbox" id="remember" name="remember" className="text-black text-sm" required />
-            <label htmlFor="remember" className="text-black text-sm">
-              &nbsp; I accept the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-            </label>
+    <div className="bg-blue-100 py-6 h-full w-full ">
+      {/* <main className="m-auto w-full max-w-md py-24 px-12 text-center text-2xl"> */}
+
+      <div className='w-1/3 h-full bg-[#f5f5f5] p-20 m-auto '>
+        <div className='w-full flex flex-col'>
+          <div className='w-full flex flex-col mb-3'>
+            <h3 className='text-3xl font-semibold mb-5'>Registration</h3>
+            <p className='text-sm md-2'>Welcome! Please enter your details.</p>
+          </div>
+          <div className='w-full flex flex-col'>
+            <input
+              type="tel"
+              id="mobile"
+              name="mobile"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              placeholder="Enter email"
+              className="w-full text-black my-4 bg-transparent py-4 border-b border-black outline-none focus:outline"
+              required
+            />
+
+            <input
+              type="text"
+              id="referral"
+              name="referral"
+              placeholder="Referral (optional)"
+              className="w-full text-black my-4 bg-transparent py-4 border-b border-black outline-none focus:outline"
+              value={referralCode}
+              onChange={(e) => setReferralCode(e.target.value)}
+            />
           </div>
 
-          <Link to="/verify">
-            <button
-              type="button"
-              className="border border-black bg-orange-400 hover:bg-orange-600 rounded-xl py-2 px-6 w-full transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110"
-              onClick={sendData}
-            >
-              Get OTP
-            </button>
-          </Link>
+          <div className='w-full flex items-center'>
+            <div className='w-full flex items-center'>
+              <input type="checkbox" id="remember" name="remember" className="text-black text-sm" required />
+              <label htmlFor="remember" className="text-black text-sm">
+                &nbsp; I accept the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+              </label>
 
-          <p className="text-sm text-gray-900 mt-4">
+            </div>
+
+
+          </div>
+
+
+          <div className='w-full flex flex-col my-4'>
+            <button className='w-full my-2 text-white bg-[#060606] rounded-md p-4 text-center flex itmes-center justify-center'>Get OTP</button>
+
+          </div>
+
+          <p className="text-sm font-normal text-[#060606]">
             By creating an account you agree to our <br />
-            <a className="hover:text-green-600" href="#">
+            <a className="font-semibold underline underline-offset-2 cursor-pointer" href="#">
               Terms of Service
             </a>{" "}
             and
-            <a className="hover:text-green-600" href="#">
+            <a className="font-semibold underline underline-offset-2 cursor-pointer" href="#">
               {" "}
               Privacy Policy
             </a>
           </p>
-        </form>
-
-        <div className="mt-8">
-          <h1>Verify OTP</h1>
-          <label>
-            OTP:
-            <input type="number" value={otp} name="otp" onChange={(e) => setOtp(e.target.value)} className="border border-black rounded-lg px-4 py-2 text-xl mb-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          </label>
-          <button
-            onClick={handleVerifyOtp}
-            className="border border-black bg-orange-400 hover:bg-orange-600 rounded-xl py-2 px-6 w-full mt-4 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110"
-          >
-            Verify OTP
-          </button>
         </div>
-      </main>
+
+
+      </div>
+
+
+      <div className="mt-8">
+        <h1>Verify OTP</h1>
+        <label>
+          OTP:
+          <input type="number" value={otp} name="otp" onChange={(e) => setOtp(e.target.value)} className="border border-black rounded-lg px-4 py-2 text-xl mb-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </label>
+        <button
+          onClick={handleVerifyOtp}
+          className="border border-black bg-orange-400 hover:bg-orange-600 rounded-xl py-2 px-6 w-full mt-4 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+        >
+          Verify OTP
+        </button>
+      </div>
+      {/* </main> */}
     </div>
   );
 };
