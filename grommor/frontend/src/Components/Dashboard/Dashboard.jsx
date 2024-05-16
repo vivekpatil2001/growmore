@@ -1,7 +1,7 @@
 import "./Dashboard.css";
 import Navbar from "../Navbar/Navbar";
 import axios from "axios";
-
+import Cards from "../Cards/Cards.jsx";
 import { useEffect, useState } from "react";
 import Payment from "../../Razorpay/Payment";
 import reffer from "./Images/reffer.png";
@@ -10,7 +10,12 @@ import { FaUserCheck } from "react-icons/fa6";
 import { TbArrowsRightLeft } from "react-icons/tb";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 import { FaInstagram, FaTelegram } from "react-icons/fa";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faSackDollar } from '@fortawesome/free-solid-svg-icons'
+import { faIdCard } from '@fortawesome/free-solid-svg-icons'
+import { faRecycle } from '@fortawesome/free-solid-svg-icons'
+import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 const user = {
   name: "Tom Cook",
   email: "tom@example.com",
@@ -41,11 +46,48 @@ function Dashboard() {
     setDarkMode(!darkMode);
   };
 
+  const [user,setUser] = useState([
+    {
+      "name": "Adeel Solangi",
+      "language": "Sindhi",
+      "id": "V59OF92YF627HFY0",
+      "bio": "Donec",
+      "version": 6.1
+      },
+      {
+      "name": "Afzal Ghaffar",
+      "language": "Sindhi",
+      "id": "ENTOCR13RSCLZ6KU",
+      "bio": "Aliquam",
+      "version": 1.88
+      },
+      {
+      "name": "Aamir Solangi",
+      "language": "Sindhi",
+      "id": "IAKPO3R4761JDRVG",
+      "bio": "Vestibulum ",
+      "version": 7.27
+      },
+      {
+      "name": "Abla Dilmurat",
+      "language": "Uyghur",
+      "id": "5ZVOEPMJUI4MB4EN",
+      "bio": "Donec ",
+      "version": 2.53
+      },
+      {
+      "name": "Adil Eli",
+      "language": "Uyghur",
+      "id": "6VTI8X6LL0MMPJCC",
+      "bio": "Vivamus",
+      "version": 6.49
+      }
+  ])
   return (
     <div>
       <Navbar />
 
-      <section className="container flex flex-col md:flex-row items-center justify-around">
+      {/* <section className="container flex flex-col md:flex-row items-center justify-around">
         <div className="w-full md:w-1/2 p-4 md:m-auto">
           <div className="m-2 w-full">
             <h1 className="text-red-500 mb-4 text-3xl">🎉 Exciting News! 🎉</h1>
@@ -88,8 +130,8 @@ function Dashboard() {
             Your browser does not support the video tag.
           </video>
         </div>
-      </section>
-
+      </section> */}
+      {/* 
       <div
         className={`container mx-auto h-screen  px-4 py-8 ${
           darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
@@ -101,20 +143,20 @@ function Dashboard() {
               darkMode ? "text-white" : "text-black"
             }`}
           ></h1>
-          {/* <button
+          <button
             className={`px-4 py-2 rounded-md m-0 p-0 ${
               darkMode ? "bg-white text-black" : "bg-black text-white"
             }`}
             onClick={toggleDarkMode}
           >
             {darkMode ? " Light Mode" : " Dark Mode"}
-          </button> */}
+          </button>
         </div>
 
     
         <div className="min-h-full mx-auto max-w-7xl py-6 mt-16 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-2">
-            {/* Total Rpin Balance Card */}
+            Total Rpin Balance Card
             <div
               className={`bg-${
                 darkMode ? "gray-800" : "gray-100"
@@ -136,7 +178,7 @@ function Dashboard() {
               </p>
             </div>
 
-            {/* ID Created today Card */}
+            ID Created today Card
             <div
               className={`bg-${
                 darkMode ? "gray-800" : "gray-100"
@@ -158,7 +200,7 @@ function Dashboard() {
               </p>
             </div>
 
-            {/* Total Referrals Card */}
+            Total Referrals Card
             <div
               className={`bg-${
                 darkMode ? "gray-800" : "gray-100"
@@ -180,7 +222,7 @@ function Dashboard() {
               </p>
             </div>
 
-            {/* Total Income Card */}
+            Total Income Card
             <div
               className={`bg-${
                 darkMode ? "gray-800" : "gray-100"
@@ -202,11 +244,53 @@ function Dashboard() {
               </p>
             </div>
           </div>
-          <div>{/* Referrals Table */}</div>
+          <div>Referrals Table</div>
         </div>
+      </div> */}
+
+
+      {/* <Payment /> */}
+
+      <div className="bg-blue-100  ">
+        <div className="bg-[#f5f5f5] py-10 mx-5 flex ">
+          <Cards icon={faSackDollar} name={`Total Rpin Balance`} money={`  $1000`} />
+          <Cards icon={faIdCard} name={`ID Created`} money={` 20`} />
+          <Cards icon={faRecycle} name={` Total Referrals`} money={` 50`} />
+          <Cards icon={faDollarSign} name={` Total Income`} money={`  $5000`} />
+        </div>
+
       </div>
 
-      <Payment />
+      <table>
+        <thead>
+          <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Language</th>
+          <th>Bio</th>
+          <th>Version</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            user.map((users , i) => {
+              const {name , id , language,bio, version} = users
+              return (
+                <>
+                <tr>
+                <td>{id}</td>
+                <td>{name}</td>
+                <td>{language}</td>
+                <td>{bio}</td>
+                <td>{version}</td>
+                </tr>
+                </>
+              )
+            })
+           
+          }
+        </tbody>
+      </table>
     </div>
   );
 }
