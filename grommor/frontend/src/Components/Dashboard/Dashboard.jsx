@@ -46,42 +46,42 @@ function Dashboard() {
     setDarkMode(!darkMode);
   };
 
-  const [user,setUser] = useState([
+  const [user, setUser] = useState([
     {
       "name": "Adeel Solangi",
-      "language": "Sindhi",
+      "mobile": "Sindhi",
       "id": "V59OF92YF627HFY0",
-      "bio": "Donec",
-      "version": 6.1
-      },
-      {
+      "email": "Donec",
+      "totalAmount": 6.1
+    },
+    {
       "name": "Afzal Ghaffar",
-      "language": "Sindhi",
+      "mobile": "Sindhi",
       "id": "ENTOCR13RSCLZ6KU",
-      "bio": "Aliquam",
-      "version": 1.88
-      },
-      {
+      "email": "Aliquam",
+      "totalAmount": 1.88
+    },
+    {
       "name": "Aamir Solangi",
-      "language": "Sindhi",
+      "mobile": "Sindhi",
       "id": "IAKPO3R4761JDRVG",
-      "bio": "Vestibulum ",
-      "version": 7.27
-      },
-      {
+      "email": "Vestibulum ",
+      "totalAmount": 7.27
+    },
+    {
       "name": "Abla Dilmurat",
-      "language": "Uyghur",
+      "mobile": "Uyghur",
       "id": "5ZVOEPMJUI4MB4EN",
-      "bio": "Donec ",
-      "version": 2.53
-      },
-      {
+      "email": "Donec ",
+      "totalAmount": 2.53
+    },
+    {
       "name": "Adil Eli",
-      "language": "Uyghur",
+      "mobile": "Uyghur",
       "id": "6VTI8X6LL0MMPJCC",
-      "bio": "Vivamus",
-      "version": 6.49
-      }
+      "email": "Vivamus",
+      "totalAmount": 6.49
+    }
   ])
   return (
     <div>
@@ -261,36 +261,43 @@ function Dashboard() {
 
       </div>
 
-      <table>
-        <thead>
-          <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Language</th>
-          <th>Bio</th>
-          <th>Version</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            user.map((users , i) => {
-              const {name , id , language,bio, version} = users
-              return (
-                <>
-                <tr>
-                <td>{id}</td>
-                <td>{name}</td>
-                <td>{language}</td>
-                <td>{bio}</td>
-                <td>{version}</td>
-                </tr>
-                </>
-              )
-            })
-           
-          }
-        </tbody>
-      </table>
+      <div className="bg-blue-100 py-5">
+        <div className="table-data bg-[#f5f5f5]  mx-5 py-6">
+
+
+
+          <table>
+            <thead>
+              <tr>
+
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Total Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                user.map((users, i) => {
+                  const { name, id, mobile, email, totalAmount } = users
+                  return (
+                    <>
+                      <tr>
+
+                        <td>{name}</td>
+                        <td>{mobile}</td>
+                        <td>{email}</td>
+                        <td>{totalAmount}</td>
+                      </tr>
+                    </>
+                  )
+                })
+
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
