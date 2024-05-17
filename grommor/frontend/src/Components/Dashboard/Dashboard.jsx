@@ -1,100 +1,88 @@
-import "./Dashboard.css";
 import Navbar from "../Navbar/Navbar";
-import axios from "axios";
 import Cards from "../Cards/Cards.jsx";
-import { useEffect, useState } from "react";
-import Payment from "../../Razorpay/Payment";
-import reffer from "./Images/reffer.png";
-import reffer2 from "./Images/reffer2.webm";
-import { FaUserCheck } from "react-icons/fa6";
-import { TbArrowsRightLeft } from "react-icons/tb";
-import { BsArrowRightCircleFill } from "react-icons/bs";
-import { FaInstagram, FaTelegram } from "react-icons/fa";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faSackDollar, faIdCard, faRecycle, faDollarSign } from '@fortawesome/free-solid-svg-icons';
-
-const getUserDashboard = async () => {
-  try {
-    const response = await axios.get("http://localhost:5000/user/dashboard");
-    console.log(response);
-  } catch (error) {
-    alert(error.message);
-  }
-};
+import { useState } from "react";
+import { FaClipboard } from "react-icons/fa";
 
 function Dashboard() {
-  const [user, setUser] = useState([
+  const [user] = useState([
     {
-      "name": "Adeel Solangi",
-      "language": "Sindhi",
-      "id": "V59OF92YF627HFY0",
-      "bio": "Donec",
-      "version": 6.1
+      name: "Adeel Solangi",
+      language: "Sindhi",
+      id: "V59OF92YF627HFY0",
+      bio: "Donec",
+      version: 6.1,
     },
     {
-      "name": "Afzal Ghaffar",
-      "language": "Sindhi",
-      "id": "ENTOCR13RSCLZ6KU",
-      "bio": "Aliquam",
-      "version": 1.88
+      name: "Afzal Ghaffar",
+      language: "Sindhi",
+      id: "ENTOCR13RSCLZ6KU",
+      bio: "Aliquam",
+      version: 1.88,
     },
     {
-      "name": "Aamir Solangi",
-      "language": "Sindhi",
-      "id": "IAKPO3R4761JDRVG",
-      "bio": "Vestibulum ",
-      "version": 7.27
+      name: "Aamir Solangi",
+      language: "Sindhi",
+      id: "IAKPO3R4761JDRVG",
+      bio: "Vestibulum ",
+      version: 7.27,
     },
     {
-      "name": "Abla Dilmurat",
-      "language": "Uyghur",
-      "id": "5ZVOEPMJUI4MB4EN",
-      "bio": "Donec ",
-      "version": 2.53
+      name: "Abla Dilmurat",
+      language: "Uyghur",
+      id: "5ZVOEPMJUI4MB4EN",
+      bio: "Donec ",
+      version: 2.53,
     },
     {
-      "name": "Adil Eli",
-      "language": "Uyghur",
-      "id": "6VTI8X6LL0MMPJCC",
-      "bio": "Vivamus",
-      "version": 6.49
-    }
+      name: "Adil Eli",
+      language: "Uyghur",
+      id: "6VTI8X6LL0MMPJCC",
+      bio: "Vivamus",
+      version: 6.49,
+    },
   ]);
+
+  const referralCode = "ABC123XYZ";
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(referralCode).then(
+      () => {
+        alert("Referral code copied to clipboard!");
+      },
+      (err) => {
+        alert("Failed to copy the referral code!");
+      }
+    );
+  };
 
   return (
     <div className="bg-white text-black">
       <Navbar />
       <div className="container mx-auto py-8 px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-20 gap-6 mr-8 mb-8">
-          <Cards icon={faSackDollar} name="Total Rpin Balance" money="$1000" />
-          <Cards icon={faIdCard} name="ID Created" money="20" />
-          <Cards icon={faRecycle} name="Total Referrals" money="50" />
-          <Cards icon={faDollarSign} name="Total Income" money="$5000" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <Cards icon="faSackDollar" name="Total Rpin Balance" money="$1000" />
+            <br/>
+            <Cards icon="faIdCard" name="ID Created" money="20" />
+          </div>
+          <div>
+            <Cards icon="faRecycle" name="Total Referrals" money="50" /><br/>
+            <Cards icon="faDollarSign" name="Total Income" money="$5000" />
+          </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Language</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bio</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Version</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {user.map((user, i) => (
-                <tr key={i}>
-                  <td className="px-6 py-4 whitespace-nowrap">{user.id}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{user.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{user.language}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{user.bio}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{user.version}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:ml-96 lg:grid-cols-4 gap-6">
+          <div className="bg-gray-100 rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
+            <h2 className="font-bold text-2xl mb-4">My Referral Code</h2>
+            <div className="bg-white px-4 py-2 rounded-md shadow-md text-xl font-semibold flex items-center justify-center sm:justify-start">
+              <span>{referralCode}</span>
+              <FaClipboard
+                className="ml-2 cursor-pointer"
+                onClick={copyToClipboard}
+                title="Copy to clipboard"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
