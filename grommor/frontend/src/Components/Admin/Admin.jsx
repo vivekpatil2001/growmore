@@ -16,7 +16,7 @@ function Admin() {
   const [users, setUsers] = useState(initialUsers);
 
   // State to track the current mode
-  const [darkMode, setDarkMode] = useState(false);
+  // const [darkMode, setDarkMode] = useState(false);
 
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {
@@ -50,6 +50,7 @@ function Admin() {
         <h1 className="text-center text-3xl font-bold">Admin Panel</h1>
         <div className="container mx-auto px-4 py-8 mt-12">
 
+3
           <div className="flex justify-around mb-8">
             <div className="w-1/3">
               <h2 className="text-2xl font-semibold mb-2 text-center">Users</h2>
@@ -66,7 +67,7 @@ function Admin() {
                 <p className="text-4xl font-bold text-center mt-4">$10,000</p>
               </div>
             </div>
-          </div>
+          </div>//
 
           <div className="overflow-x-auto">
             <table className="table-auto w-full">

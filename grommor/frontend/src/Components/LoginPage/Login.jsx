@@ -151,7 +151,7 @@ function Login() {
   return (
     <Routes>
       <Route path="/" element={<Home phoneNumber={phoneNumber} referralCode={referralCode} setPhoneNumber={setPhoneNumber} setReferralCode={setReferralCode} sendData={sendData} otp={otp} handleVerifyOtp={handleVerifyOtp} setOtp={setOtp} />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/history" element={<Admin />} />
       <Route path="/paymentSuccess" element={<PaymentSuccess />} />
