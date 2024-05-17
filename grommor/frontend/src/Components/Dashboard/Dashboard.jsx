@@ -1,7 +1,7 @@
 import Navbar from "../Navbar/Navbar";
-import Cards from "../Cards/Cards.jsx";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { FaClipboard } from "react-icons/fa";
+import { FaWallet } from "react-icons/fa6";
 
 function Dashboard() {
   const [user] = useState([
@@ -41,7 +41,15 @@ function Dashboard() {
       version: 6.49,
     },
   ]);
+  const [seconds, setSeconds] = useState(60);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSeconds(prevSeconds => prevSeconds - 1);
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
   const referralCode = "ABC123XYZ";
 
   const copyToClipboard = () => {
@@ -61,29 +69,58 @@ function Dashboard() {
       <div className="container mx-auto py-8 px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div>
-            <Cards icon="faSackDollar" name="Total Rpin Balance" money="$1000" />
+            <div className="h-14 shadow rounded-xl flex border justify-between *:px-4 items-center">
+              <p className="font-semibold">rPIN Balance</p>
+              <div className="h-full text-white bg-green-500 rounded-r-xl"><p>Total</p><p>0</p></div>
+            </div>
             <br/>
-            <Cards icon="faIdCard" name="ID Created" money="20" />
+            <div className="flex flex-col gap-2">
+              <p className="text-center font-medium">Create ID will start in</p>
+              <p className="text-center">{seconds}</p>
+            </div>
+            <br/>
+            <div className="h-14 shadow bg-green-200 rounded-xl flex border justify-between *:px-4 items-center">
+              <p className="font-semibold">IDs Created Today</p>
+              <p>0</p>
+            </div>
           </div>
           <div>
-            <Cards icon="faRecycle" name="Total Referrals" money="50" /><br/>
-            <Cards icon="faDollarSign" name="Total Income" money="$5000" />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:ml-96 lg:grid-cols-4 gap-6">
-          <div className="bg-gray-100 rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
-            <h2 className="font-bold text-2xl mb-4">My Referral Code</h2>
-            <div className="bg-white px-4 py-2 rounded-md shadow-md text-xl font-semibold flex items-center justify-center sm:justify-start">
-              <span>{referralCode}</span>
-              <FaClipboard
-                className="ml-2 cursor-pointer"
-                onClick={copyToClipboard}
-                title="Copy to clipboard"
-              />
+          <div className="h-14 bg-green-200 rounded-xl flex border justify-between *:px-4 items-center">
+              <p className="font-semibold">Total Referrals</p>
+              <p>0</p>
+            </div>
+            <br/>
+            <div className="h-14 bg-green-200 rounded-xl flex border justify-between *:px-4 items-center">
+            <div className="flex gap-2 items-center">
+              <p><FaWallet size="2em"/></p>
+              <p className="font-semibold">Total Income</p>
+            </div>
+              <p>₹0</p>
             </div>
           </div>
         </div>
+
+        <div>
+          <p className="font-medium">My Refferal Code</p>
+          <div className="flex justify-between border bg-green-200 rounded-xl p-1 px-3 h-14 items-center">
+            <p className="ml-2">{referralCode}</p>
+            <button className="bg-green-500 text-white p-1.5 rounded">Copy</button>
+          </div>
+        </div>
+
+
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:ml-96 lg:grid-cols-4 gap-6">
+          <div className="bg-gray-100 rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
+            <h2 className="font-bold text-2xl mb-4">My Referral Code</h2>
+            <div className="bg-white px-4 py-2 rounded-md shadow-md font-semibold flex items-center justify-center sm:justify-start">
+              <span>{referralCode}</span>
+              <button className="ml-2 border rounded bg-green-500 "
+                onClick={copyToClipboard}
+                title="Copy to clipboard"
+              >Copy</button>
+            </div>
+          </div>
+        </div> */}
       </div>
     </div>
   );
